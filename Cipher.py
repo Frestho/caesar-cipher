@@ -1,11 +1,14 @@
 import random
 #sets the caesar cipher key
 key = random.randint (1, 25)
+#gives you the key, remove this for it to be secret.
 print (key)
 letters = 'abcdefghijklmnopqrstuvwxyz'
 caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 phrase = input('Type a phrase to be encoded: ')
+#defines the variable that will store the encoded phrase
 encoded = ''
+#loop that goes through every character in the inputted phrase and changes the letters according to the key
 for place in range(0, len(phrase)):
     inCaps = caps.find(phrase[place])
     if inCaps < 26 and inCaps > -1: #should only be true if there was a capital letter
@@ -16,9 +19,9 @@ for place in range(0, len(phrase)):
                 else: #otherwise, do nothing different
                     phrase2 += phrase[i]
             phrase = phrase2 
-    placeInLetters = letters.find(phrase[place])
-    if not(placeInLetters < 25 and placeInLetters > -1):
+    placeInLetters = letters.find(phrase[place]) #finds the place that the letter is on in the letters variable
+    if not(placeInLetters < 25 and placeInLetters > -1):#if not a letter, don't do anything
         encoded = encoded + phrase[place]
-    else:
+    else: #and if it's a letter, encode it.
         encoded = encoded + letters[(placeInLetters+key) % 26]
-print (encoded)    
+print (encoded)
